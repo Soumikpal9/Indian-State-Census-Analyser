@@ -14,7 +14,21 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 public class StateCensusAnalyser {
-	public static void main(String[] args) {
-		System.out.println("Welcome to Indian State Census Analyser Problem!!!");
+	public int loadCSVFile(Path path) throws CensusException {
+		try (Reader reader = Files.newBufferedReader(path)){
+			CsvToBean<StateCensus> csvToBean = new CsvToBeanBuilder(reader).withType(StateCensus.class).withIgnoreLeadingWhiteSpace(true).build();
+			Iterator<StateCensus> iterator = csvToBean.iterator();
+			ArrayList<StateCensus> stateCensusList = new ArrayList<StateCensus>();
+			while(iterator.hasNext()) {
+				 stateCensusList.add(iterator.next());
+			}
+			return stateCensusList.size();
+		}
+		catch(IOException e) {
+			throw new CensusException("File not found", CensusException.ExceptionType.WRONG_CSV); 
+		}
+		catch(RuntimeException e) {
+			throw new CensusException("File internal data not valid", CensusException.ExceptionType.WRONG_HEADER);
+		}
 	}
 }
