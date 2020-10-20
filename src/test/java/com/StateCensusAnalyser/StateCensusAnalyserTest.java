@@ -13,6 +13,7 @@ public class StateCensusAnalyserTest {
 	public static final String STATE_CENSUS_DATA = "StateCensus.csv";
 	public static final String WRONG_STATE_CENSUS_DATA = "src/main/java/com/StateCensusAnalyser/StateCensus.csv";
 	public static final String WRONG_STATE_CENSUS_DATA_HEADER = "StateCode.csv";
+	public static final String WRONG_STATE_CENSUS_DATA_TYPE = "StateCensus.txt";
 	
 	StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
 	
@@ -39,6 +40,16 @@ public class StateCensusAnalyserTest {
     	}
     	catch(CensusException e) {
     		Assert.assertEquals(CensusException.ExceptionType.WRONG_HEADER, e.type);;
+    	}
+    }
+    
+    @Test
+    public void checkWrongType() throws CensusException{
+    	try {
+    		stateCensusAnalyser.loadCSVFile(Paths.get(WRONG_STATE_CENSUS_DATA_TYPE));
+    	}
+    	catch(CensusException e) {
+    		Assert.assertEquals(CensusException.ExceptionType.WRONG_TYPE, e.type);;
     	}
     }
 }
