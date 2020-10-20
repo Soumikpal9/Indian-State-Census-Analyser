@@ -14,7 +14,7 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 public class StateCensusAnalyser {
-	public int loadCSVFile(Path path) {
+	public int loadCSVFile(Path path) throws CensusException {
 		try (Reader reader = Files.newBufferedReader(path)){
 			CsvToBean<StateCensus> csvToBean = new CsvToBeanBuilder(reader).withType(StateCensus.class).withIgnoreLeadingWhiteSpace(true).build();
 			Iterator<StateCensus> iterator = csvToBean.iterator();
@@ -25,8 +25,7 @@ public class StateCensusAnalyser {
 			return stateCensusList.size();
 		}
 		catch(IOException e) {
-			e.printStackTrace();
-			return 0;
+			throw new CensusException("File not found", CensusException.ExceptionType.WRONG_CSV); 
 		}
 	}
 }
