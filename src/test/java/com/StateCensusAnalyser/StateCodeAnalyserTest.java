@@ -9,6 +9,7 @@ import junit.framework.Assert;
 public class StateCodeAnalyserTest {
 	public static final String STATE_CODE_DATA = "StateCode.csv";
 	public static final String WRONG_STATE_CODE_DATA = "src/main/java/com/StateCensusAnalyser/StateCode.csv";
+	public static final String WRONG_STATE_CODE_DATA_HEADER = "StateCensus.csv";
 	
 	StateCodeAnalyser stateCodeAnalyser = new StateCodeAnalyser();
 	
@@ -25,6 +26,16 @@ public class StateCodeAnalyserTest {
     	}
     	catch(CensusException e) {
     		Assert.assertEquals(CensusException.ExceptionType.WRONG_CSV, e.type);
+    	}
+    }
+	
+	@Test
+    public void checkWrongHeader() throws CensusException{
+    	try {
+    		stateCodeAnalyser.loadCSVFile(Paths.get(WRONG_STATE_CODE_DATA_HEADER));
+    	}
+    	catch(CensusException e) {
+    		Assert.assertEquals(CensusException.ExceptionType.WRONG_HEADER, e.type);;
     	}
     }
 }
