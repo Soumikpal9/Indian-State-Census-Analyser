@@ -2,7 +2,7 @@ package com.StateCensusAnalyser;
 
 public class CensusException extends Exception {
 	enum ExceptionType{
-		WRONG_CSV, WRONG_TYPE, WRONG_HEADER
+		WRONG_CSV, WRONG_TYPE, WRONG_HEADER, UNABLE_TO_PARSE;
 	}
 	
 	ExceptionType type;
