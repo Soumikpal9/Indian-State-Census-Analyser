@@ -7,7 +7,7 @@ import java.util.stream.StreamSupport;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
-public class OpenCSVBuilder {
+public class OpenCSVBuilder implements ICSVBuilder {
 	public<E> Iterator<E> getCsvFileIterator(Reader reader, Class<E> csvClass) throws CensusException{
 		try {
 			CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
@@ -24,4 +24,11 @@ public class OpenCSVBuilder {
 		int noOfStates = (int) StreamSupport.stream((iterable).spliterator(), false).count();
 		return noOfStates;
 	}
+
+	@Override
+	public <E> Iterator<E> getCSVFileIterator(Reader reader, Class<E> csvClass) throws CensusException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
