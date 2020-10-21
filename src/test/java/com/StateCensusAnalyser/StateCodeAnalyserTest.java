@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import org.junit.Test;
 
 import junit.framework.Assert;
+import com.CSVBuilder.*;
 
 public class StateCodeAnalyserTest {
 	public static final String STATE_CODE_DATA = "StateCode.csv";

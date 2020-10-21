@@ -1,6 +1,7 @@
 package com.StateCensusAnalyser;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertTrue;
 
 import java.nio.file.Paths;
@@ -8,6 +9,7 @@ import java.nio.file.Paths;
 import org.junit.Test;
 
 import junit.framework.Assert;
+import com.CSVBuilder.*;
 
 public class StateCensusAnalyserTest {
 	public static final String STATE_CENSUS_DATA = "StateCensus.csv";

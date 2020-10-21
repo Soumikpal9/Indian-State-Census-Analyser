@@ -10,6 +10,7 @@ import java.util.stream.StreamSupport;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import com.CSVBuilder.*;
 
 public class StateCodeAnalyser {
 	public int loadCSVFile(Path path) throws CensusException, CSVException {
