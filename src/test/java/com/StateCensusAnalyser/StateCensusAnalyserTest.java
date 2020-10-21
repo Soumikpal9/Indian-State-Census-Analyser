@@ -18,13 +18,13 @@ public class StateCensusAnalyserTest {
 	StateCensusAnalyser stateCensusAnalyser = new StateCensusAnalyser();
 	
     @Test
-    public void ensureNoOfRecordMatches() throws CensusException{
+    public void ensureNoOfRecordMatches() throws CensusException, CSVException{
         int records = stateCensusAnalyser.loadCSVFile(Paths.get(STATE_CENSUS_DATA));
         Assert.assertEquals(29, records);
     }
     
     @Test
-    public void checkWrongPath() throws CensusException{
+    public void checkWrongPath() throws CensusException, CSVException{
     	try {
     		stateCensusAnalyser.loadCSVFile(Paths.get(WRONG_STATE_CENSUS_DATA));
     	}
@@ -34,7 +34,7 @@ public class StateCensusAnalyserTest {
     }
     
     @Test
-    public void checkWrongHeader() throws CensusException{
+    public void checkWrongHeader() throws CensusException, CSVException{
     	try {
     		stateCensusAnalyser.loadCSVFile(Paths.get(WRONG_STATE_CENSUS_DATA_HEADER));
     	}
@@ -44,7 +44,7 @@ public class StateCensusAnalyserTest {
     }
     
     @Test
-    public void checkWrongType() throws CensusException{
+    public void checkWrongType() throws CensusException, CSVException{
     	try {
     		stateCensusAnalyser.loadCSVFile(Paths.get(WRONG_STATE_CENSUS_DATA_TYPE));
     	}
