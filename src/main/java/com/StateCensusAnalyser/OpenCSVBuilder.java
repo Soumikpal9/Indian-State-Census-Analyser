@@ -8,15 +8,10 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 public class OpenCSVBuilder implements ICSVBuilder {
-	public<E> Iterator<E> getCsvFileIterator(Reader reader, Class<E> csvClass) throws CensusException{
-		try {
-			CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-			CsvToBean<E> csvToBean = csvToBeanBuilder.withType(csvClass).withIgnoreLeadingWhiteSpace(true).build();
-			return csvToBean.iterator();
-		}
-		catch(IllegalStateException e) {
-			throw new CensusException(e.getMessage(), CensusException.ExceptionType.UNABLE_TO_PARSE);
-		}
+	public<E> Iterator<E> getCsvFileIterator(Reader reader, Class<E> csvClass) throws CSVException{
+		CsvToBeanBuilder<E> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
+		CsvToBean<E> csvToBean = csvToBeanBuilder.withType(csvClass).withIgnoreLeadingWhiteSpace(true).build();
+		return csvToBean.iterator();
 	}
 	
 	public<E> int getCount(Iterator<E> iterator) {
@@ -26,7 +21,7 @@ public class OpenCSVBuilder implements ICSVBuilder {
 	}
 
 	@Override
-	public <E> Iterator<E> getCSVFileIterator(Reader reader, Class<E> csvClass) throws CensusException {
+	public <E> Iterator<E> getCSVFileIterator(Reader reader, Class<E> csvClass) throws CSVException {
 		// TODO Auto-generated method stub
 		return null;
 	}
