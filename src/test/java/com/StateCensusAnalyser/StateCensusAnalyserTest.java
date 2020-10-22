@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 import com.CSVBuilder.*;
+import com.google.gson.Gson;
 
 public class StateCensusAnalyserTest {
 	public static final String STATE_CENSUS_DATA = "StateCensus.csv";
@@ -53,5 +54,15 @@ public class StateCensusAnalyserTest {
     	catch(CensusException e) {
     		Assert.assertEquals(CensusException.ExceptionType.WRONG_TYPE, e.type);;
     	}
+    }
+    
+    @Test
+    public void checkSorted() throws CensusException, CSVException{
+    	try {
+    		String sortedCensusData = stateCensusAnalyser.getStateWiseSortedCensusData(Paths.get(STATE_CENSUS_DATA));
+    		StateCensus[] censusList = new Gson().fromJson(sortedCensusData, StateCensus[].class);
+    		Assert.assertEquals(censusList[28].state, "West Bengal");
+    	}
+    	catch(CensusException e) {}
     }
 }
