@@ -85,4 +85,14 @@ public class StateCensusAnalyserTest {
     	}
     	catch(CensusException e) {}
     }
+    
+    @Test
+    public void checkAreaSorted() throws CensusException, CSVException{
+    	try {
+    		String sortedCensusData = stateCensusAnalyser.getAreaWiseSortedCensusData(Paths.get(STATE_CENSUS_DATA));
+    		StateCensus[] censusList = new Gson().fromJson(sortedCensusData, StateCensus[].class);
+    		Assert.assertEquals(censusList[28].state, "Goa");
+    	}
+    	catch(CensusException e) {}
+    }
 }
