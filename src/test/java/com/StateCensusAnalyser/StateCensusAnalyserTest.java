@@ -75,4 +75,14 @@ public class StateCensusAnalyserTest {
     	}
     	catch(CensusException e) {}
     }
+    
+    @Test
+    public void checkPopulationDensitySorted() throws CensusException, CSVException{
+    	try {
+    		String sortedCensusData = stateCensusAnalyser.getPopulationDensityWiseSortedCensusData(Paths.get(STATE_CENSUS_DATA));
+    		StateCensus[] censusList = new Gson().fromJson(sortedCensusData, StateCensus[].class);
+    		Assert.assertEquals(censusList[28].state, "Arunachal Pradesh");
+    	}
+    	catch(CensusException e) {}
+    }
 }
